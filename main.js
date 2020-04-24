@@ -45,9 +45,14 @@ const getWinner = () => {
     winningCombos.forEach((combo, index) => {
         if (board[combo[0]] && board[combo[0]] === board[combo[1]] && board[combo[0]] === board[combo[2]]) {
             winner = board[combo[0]];
-            setTimeout(function () { alert(`${win} wins the game!`), restartGame() }, 400);
+            // setTimeout(function () { alert(`${win} wins the game!`), restartGame() }, 400);
         }
     })
+    if (winner) {
+        squares.forEach(square => {
+            square.removeEventListener("click", handleTurn);
+        })
+    }
     return winner ? winner : board.includes('') ? null : 'T';
 }
 
