@@ -10,7 +10,8 @@ const winningCombos = [
 ];
 const squares = Array.from(document.querySelectorAll("#square"));
 const resetButton = document.getElementById("reset-button");
-const boardContainer = document.getElementById("board");
+// const boardContainer = document.getElementById("board");
+
 console.log(squares)
 let messages = document.querySelector("h3");
 let turn = "X";
@@ -24,6 +25,7 @@ const initialise = () => {
     board = ["", "", "",
         "", "", "",
         "", "", ""];
+
     messages.textContent = "Play again!"
 }
 initialise()
@@ -43,7 +45,7 @@ const getWinner = () => {
     winningCombos.forEach((combo, index) => {
         if (board[combo[0]] && board[combo[0]] === board[combo[1]] && board[combo[0]] === board[combo[2]]) {
             winner = board[combo[0]];
-            setTimeout(function () { alert(`${win} wins the game!`), initialise() }, 400);
+            setTimeout(function () { alert(`${win} wins the game!`), restartGame() }, 400);
         }
     })
     return winner ? winner : board.includes('') ? null : 'T';
@@ -62,9 +64,45 @@ const handleTurn = (event) => {
     render();
 }
 
-resetButton.addEventListener("click", initialise);
-boardContainer.addEventListener("click", handleTurn);
+// boardContainer.addEventListener("click", handleTurn);
+
+squares.forEach(square => {
+    square.addEventListener("click", handleTurn
+        , { once: true }
+    );
+})
+
+const restartGame = () => {
+    initialise()
+    squares.forEach(square => {
+        square.addEventListener("click", handleTurn
+            , { once: true }
+        );
+    })
+
+}
+resetButton.addEventListener("click", restartGame);
 
 
 
 
+// squares.forEach(square => {
+//     square.addEventListener("click", handleTurn = (event) => {
+//         const index = squares.findIndex((square) => {
+//             if (square.innerHTML === "") {
+//                 return square === event.target;
+//             }
+//             else null;
+//         })
+
+//         board[index] = turn;
+//         turn = turn === "X" ? "O" : "X";
+//         win = getWinner();
+//         render();
+//         // if (square.innerHTML !== "") {
+//         //     square.removeEventListener("click", handleTurn);
+//         // }
+//     }
+//         , { once: true }
+//     );
+// })
