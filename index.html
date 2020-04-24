@@ -10,6 +10,13 @@
   <body>
     <h1>Tic-Tac-Toe</h1>
     <h3></h3>
+    <section id="scoreboard">
+      <!-- <h2 id="title">Scoreboard</h2> -->
+      <h3 id="playerX">Player X</h3>
+      <p id="playerXScore">0</p>
+      <h3 id="playerO">Player O</h3>
+      <p id="playerOScore">0</p>
+    </section>
     <div class="flex-container flex-column">
       <div class="flex-container flex-wrap" id="board">
         <div class="square" id="square"></div>
@@ -22,13 +29,8 @@
         <div class="square" id="square"></div>
         <div class="square" id="square"></div>
       </div>
-      <button class="reset-button" id="reset-button">Reset</button>
+      <button class="restart-button" id="restart-button">Restart</button>
     </div>
-
-    <!-- <div class="winning-message" id="winning-message">
-      <div class="winnimg-message-text" id="winnimg-message-text"></div>
-      <button id="restert-button">Restart</button>
-    </div> -->
 
     <script src="main.js"></script>
   </body>
