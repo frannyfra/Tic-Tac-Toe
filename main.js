@@ -1,4 +1,3 @@
-
 const winningCombos = [
     [0, 1, 2],
     [3, 4, 5],
@@ -13,7 +12,7 @@ const squares = Array.from(document.querySelectorAll("#square"));
 const resetButton = document.getElementById("reset-button");
 const boardContainer = document.getElementById("board");
 console.log(squares)
-let messages = document.querySelector("h2");
+let messages = document.querySelector("h3");
 let turn = "X";
 let win;
 let board;
