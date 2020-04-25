@@ -1,4 +1,3 @@
-
 //---DOM Manipulation ---
 const squares = Array.from(document.querySelectorAll("#square"));
 const restartButton = document.getElementById("restart-button");
@@ -7,7 +6,7 @@ const userXScore = document.getElementById("playerXScore");
 const userOScore = document.getElementById("playerOScore");
 let messages = document.querySelector("h3");
 
-//---constant and variable declaration---
+//---constants and variables declaration---
 const winningCombos = [
     [0, 1, 2],
     [3, 4, 5],
@@ -33,15 +32,15 @@ const initialise = () => {
         "", "", "",
         "", "", ""];
 
-    messages.textContent = "Play again!"
+    messages.textContent = "Let's play!"
 }
-initialise()
+initialise();
 
 const render = () => {
     board.forEach((mark, index) => {
         if (squares[index].textContent === "") squares[index].textContent = mark;
     });
-    messages.textContent = (win === 'T') ? `That's a tie` : win ? `${win} wins the game!` : `It's ${turn}'s turn!`;
+    messages.textContent = (win === 'Tie') ? `That's a tie` : win ? `${win} wins the game!` : `It's ${turn}'s turn!`;
 }
 render();
 
@@ -54,16 +53,17 @@ const getWinner = () => {
         }
     })
     if (winner === "X") {
-        userXScore.innerText = (playerXScore += 1)
+        userXScore.innerText = (playerXScore += 1);
     } else if (winner === "O") {
-        userOScore.innerText = (playerOScore += 1)
+        userOScore.innerText = (playerOScore += 1);
     } else null;
     if (winner) {
         squares.forEach(square => {
             square.removeEventListener("click", handleTurn);
         })
-    }
-    return winner ? winner : board.includes('') ? null : 'T';
+    };
+    //is there a winner? if there is a winner and the board includes empty spaces then do nothing else declare is a tie;
+    return winner ? winner : board.includes("") ? null : 'Tie';
 }
 
 const handleTurn = (event) => {
@@ -96,8 +96,7 @@ restartButton.addEventListener("click", restartGame = () => {
 
 resetScoreButton.addEventListener("click", resetScore = () => {
     playerXScore = 0; playerOScore = 0;
-    userXScore.innerText = 0;
-    userOScore.innerText = 0;
+    userXScore.innerText, userOScore.innerText = 0;
     restartGame();
 });
 
