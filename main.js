@@ -2,6 +2,7 @@
 //---DOM Manipulation ---
 const squares = Array.from(document.querySelectorAll("#square"));
 const restartButton = document.getElementById("restart-button");
+const resetScoreButton = document.getElementById("reset-score");
 const userXScore = document.getElementById("playerXScore");
 const userOScore = document.getElementById("playerOScore");
 let messages = document.querySelector("h3");
@@ -49,7 +50,7 @@ const getWinner = () => {
     winningCombos.forEach((combo, index) => {
         if (board[combo[0]] && board[combo[0]] === board[combo[1]] && board[combo[0]] === board[combo[2]]) {
             winner = board[combo[0]];
-            setTimeout(function () { alert(`${win} wins the game!`), oneMoreTurnGame() }, 400);
+            setTimeout(function () { alert(`${win} wins the game!`), restartGame() }, 400);
         }
     })
     if (winner === "X") {
@@ -84,26 +85,19 @@ squares.forEach(square => {
     );
 })
 
-const restartGame = () => {
-    initialise()
+restartButton.addEventListener("click", restartGame = () => {
+    initialise();
+    squares.forEach(square => {
+        square.addEventListener("click", handleTurn
+            , { once: true }
+        );
+    })
+});
+
+resetScoreButton.addEventListener("click", resetScore = () => {
+    playerXScore = 0; playerOScore = 0;
     userXScore.innerText = 0;
     userOScore.innerText = 0;
-
-    squares.forEach(square => {
-        square.addEventListener("click", handleTurn
-            , { once: true }
-        );
-    })
-}
-restartButton.addEventListener("click", restartGame);
-
-const oneMoreTurnGame = () => {
-    initialise()
-
-    squares.forEach(square => {
-        square.addEventListener("click", handleTurn
-            , { once: true }
-        );
-    })
-}
+    restartGame();
+});
 
