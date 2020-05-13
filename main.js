@@ -1,5 +1,6 @@
 //---DOM Manipulation ---
 const squares = Array.from(document.querySelectorAll("#square"));
+console.log(squares, "iam the squares")
 const restartButton = document.getElementById("restart-button");
 const resetScoreButton = document.getElementById("reset-score");
 const userXScore = document.getElementById("playerXScore");
@@ -51,6 +52,11 @@ const getWinner = () => {
             winner = board[combo[0]];
             setTimeout(function () { alert(`${win} wins the game!`), restartGame() }, 400);
         }
+        console.log(board[combo[0]]);
+        console.log(board[combo[1]]);
+        console.log(board[combo[2]]);
+
+
     })
     if (winner === "X") {
         userXScore.innerText = (playerXScore += 1);
@@ -95,8 +101,10 @@ restartButton.addEventListener("click", restartGame = () => {
 });
 
 resetScoreButton.addEventListener("click", resetScore = () => {
-    playerXScore = 0; playerOScore = 0;
-    userXScore.innerText, userOScore.innerText = 0;
+    playerXScore = 0;
+    playerOScore = 0;
+    userXScore.innerText = 0;
+    userOScore.innerText = 0;
     restartGame();
 });
 
